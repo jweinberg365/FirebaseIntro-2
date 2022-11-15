@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../IS424"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "FirebaseIntro 2"
+	}
+}
