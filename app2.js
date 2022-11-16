@@ -1,38 +1,15 @@
-// db.collection("people")
-//     .where("age", "<=", 40)
-//     .where('name', '==', 'mary')
-//     .get()
-//     .then((data) =>{
-//         let docs = data.docs
-//         docs.forEach((doc)=>
-//             console.log(doc.data()))
-//     });
 
-
-// //update a document
-// db.collection('people').doc('tPSAa6iBk0NClv8WTSRw').update({
-
-//     "favorites.food": 'burgers'
+// task 1
+let real = {
+    name: 'Real Madrid',
+    city: "Madrid",
+    country: "Spain",
+    "top scorers": ['Ronaldo', "Benzema", "Hazard"],
+    "worldwide fans (in millions)": 798
 
 
 
-// })
-
-// let real = {
-//     name: 'Real Madrid',
-//     city: "Madrid",
-//     country: "Spain",
-//     "top scorers": ['Ronaldo', "Benzema", "Hazard"],
-//     "worldwide fans (in millions)": 798
-
-
-
-// }
-
-
-
-
-// db.collection('teams').add(real) 
+}
 
 
 let manu = {
@@ -59,67 +36,95 @@ let argentina = {
     "worldwide fans (in millions)": 888
 
 }
+let barca = {
+    name: "Barcelona",
+    city: "Barcelona",
+    country: "Spain",
+    "top scorers": ["Messi", "Suarez", "Puyol"],
+    "worldwide fans (in millions)": 738,
+  };
+   
+  let brazil = {
+    name: "Brazil National Team",
+    city: "Not applicable",
+    country: "Brazil",
+    "top scorers": ["Ronaldinho", "Cafu", "Bebeto"],
+    "worldwide fans (in millions)": 950,
+  };
+  let atletico = {
+    name: "Atletico Madrid",
+    city: "Madrid",
+    country: "Spain",
+    "top scorers": ["Aragonés", "Griezmann", "Torez"],
+    "worldwide fans (in millions)": 400,
+  };
+   
+  
 
 // db.collection('teams').add(manu) 
 // db.collection('teams').add(mancity) 
 // db.collection('teams').add(argentina)
+// db.collection('teams').add(real) 
+// db.collection('teams').add(barca) 
+// db.collection('teams').add(brazil) 
+// db.collection('teams').add(atletico) 
 
 
-// db.collection('teams')
-// .where('country','==','Spain')
-// .get()
-// .then((data) => {
-//     let docs = data.docs;
-//     docs.forEach((doc) => {
-//         console.log(doc.data());
-//     });
-// });
+
+// task 2
+db.collection('teams')
+.where('country','==','Spain')
+.get()
+.then((data) => {
+    let docs = data.docs;
+    docs.forEach((doc) => {
+        q1.innerHTML+= (doc.data().name) + `<br>`;
+    });
+});
 
 
-// db.collection('teams')
-// .where('country','==','Spain')
-// .where('city', '==', 'Madrid')
-// .get()
-// .then((data) => {
-//     let docs = data.docs;
-//     docs.forEach((doc) => {
-//         console.log(doc.data());
-//     });
-// });
+db.collection('teams')
+.where('country','==','Spain')
+.where('city', '==', 'Madrid')
+.get()
+.then((data) => {
+    let docs = data.docs;
+    docs.forEach((doc) => {
+        q2.innerHTML+= (doc.data().name) + `<br>`;
+    });
+});
 
 
-// db.collection('teams')
-// .get()
-// .then((data) => {
-//     let docs = data.docs;
-//     docs.forEach((doc) => {
-//         code.innerHTML += (doc.data().name);
-//         code.innerHTML += `<br>`
-//     });
-// });
+db.collection('teams')
+.where('city', '==', 'Not applicable')
+.get()
+.then((data) => {
+    let docs = data.docs;
+    docs.forEach((doc) => {
+        q3.innerHTML += (doc.data().name)+`<br>`;
+    });
+});
 
 
-// db.collection('teams')
-// .where('country', '!=', 'Spain')
-// .get()
-// .then((data) => {
-//     let docs = data.docs;
-//     docs.forEach((doc) => {
-//         code.innerHTML += (doc.data().name);
-//         code.innerHTML += `<br>`
-//     });
-// });
+db.collection('teams')
+.where('country', '!=', 'Spain')
+.get()
+.then((data) => {
+    let docs = data.docs;
+    docs.forEach((doc) => {
+        q4.innerHTML += (doc.data().name) + `<br>`;
+    });
+});
 
-// db.collection('teams')
-// .where('country', 'not-in', ['England', 'Spain'])
-// .get()
-// .then((data) => {
-//     let docs = data.docs;
-//     docs.forEach((doc) => {
-//         code.innerHTML += (doc.data().name);
-//         code.innerHTML += `<br>`
-//     });
-// });
+db.collection('teams')
+.where('country', 'not-in', ['England', 'Spain'])
+.get()
+.then((data) => {
+    let docs = data.docs;
+    docs.forEach((doc) => {
+        q5.innerHTML += (doc.data().name)+`<br>`;
+    });
+});
 
 
 db.collection('teams')
@@ -129,12 +134,44 @@ db.collection('teams')
 .then((data) => {
     let docs = data.docs;
     docs.forEach((doc) => {
-        code.innerHTML += (doc.data().name);
-        code.innerHTML += `<br>`
+        q6.innerHTML += (doc.data().name) + `<br>`;
+        
     });
 });
 
+db.collection('teams')
+.where('worldwide fans (in millions)', '>=', 500)
+.where('worldwide fans (in millions)', '<=', 600)
+.get()
+.then((data) => {
+    let docs = data.docs;
+    docs.forEach((doc) => {
+        q7.innerHTML += (doc.data().name) + `<br>`;
+        
+    });
+});
 
+db.collection('teams')
+.where('top scorers', "array-contains", 'Ronaldo')
+.get()
+.then((data) => {
+    let docs = data.docs;
+    docs.forEach((doc) => {
+        q8.innerHTML += (doc.data().name) + `<br>`;
+        
+    });
+});
+
+db.collection('teams')
+.where('top scorers', "array-contains-any", ['Ronaldo', 'Messi', 'Maradona'])
+.get()
+.then((data) => {
+    let docs = data.docs;
+    docs.forEach((doc) => {
+        q9.innerHTML += (doc.data().name) + `<br>`;
+        
+    });
+});
 
 
 
