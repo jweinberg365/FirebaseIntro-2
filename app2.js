@@ -72,6 +72,7 @@ let barca = {
 
 
 // task 2
+//q1
 db.collection('teams')
 .where('country','==','Spain')
 .get()
@@ -82,7 +83,7 @@ db.collection('teams')
     });
 });
 
-
+//q2
 db.collection('teams')
 .where('country','==','Spain')
 .where('city', '==', 'Madrid')
@@ -94,7 +95,7 @@ db.collection('teams')
     });
 });
 
-
+//q3
 db.collection('teams')
 .where('city', '==', 'Not applicable')
 .get()
@@ -105,7 +106,7 @@ db.collection('teams')
     });
 });
 
-
+//q4
 db.collection('teams')
 .where('country', '!=', 'Spain')
 .get()
@@ -116,6 +117,7 @@ db.collection('teams')
     });
 });
 
+//q5
 db.collection('teams')
 .where('country', 'not-in', ['England', 'Spain'])
 .get()
@@ -126,7 +128,7 @@ db.collection('teams')
     });
 });
 
-
+//q6
 db.collection('teams')
 .where('country', '==', 'Spain')
 .where('worldwide fans (in millions)', '>', 700)
@@ -139,6 +141,7 @@ db.collection('teams')
     });
 });
 
+//q7
 db.collection('teams')
 .where('worldwide fans (in millions)', '>=', 500)
 .where('worldwide fans (in millions)', '<=', 600)
@@ -151,6 +154,7 @@ db.collection('teams')
     });
 });
 
+//q8
 db.collection('teams')
 .where('top scorers', "array-contains", 'Ronaldo')
 .get()
@@ -162,6 +166,7 @@ db.collection('teams')
     });
 });
 
+//q9
 db.collection('teams')
 .where('top scorers', "array-contains-any", ['Ronaldo', 'Messi', 'Maradona'])
 .get()
@@ -172,6 +177,75 @@ db.collection('teams')
         
     });
 });
+
+
+//task 3
+//update Real Madrid
+// db.collection('teams').doc('Q8cHc7Doq7urgBySibL9').update({
+//     name: 'Real Madrid FC',
+//     'worldwide fans (in millions)': 811
+
+
+// })
+
+// update Barcelona
+// db.collection('teams').doc('QERZLj7oJnWgjywQmUPt').update({
+//     name: 'FC Barcelona',
+//     'worldwide fans (in millions)': 747
+
+
+// })
+
+//updating top scorers
+//real madrid
+// db.collection('teams').doc('Q8cHc7Doq7urgBySibL9').update({
+//     'top scorers': firebase.firestore.FieldValue.arrayRemove('Hazard')
+
+// })
+// db.collection('teams').doc('Q8cHc7Doq7urgBySibL9').update({
+//     'top scorers': firebase.firestore.FieldValue.arrayUnion('Crispo')
+
+// })
+
+
+
+//Barcelona
+// db.collection('teams').doc('QERZLj7oJnWgjywQmUPt').update({
+//     'top scorers': firebase.firestore.FieldValue.arrayRemove('Puyol')
+
+// })
+// db.collection('teams').doc('QERZLj7oJnWgjywQmUPt').update({
+//     'top scorers': firebase.firestore.FieldValue.arrayUnion('Deco')
+
+// })
+
+//adding jersey colors
+// db.collection('teams').doc('Q8cHc7Doq7urgBySibL9').update({
+//     color: {
+//         home: "White",
+//         away: "Black"
+
+//     }
+
+// })
+// db.collection('teams').doc('QERZLj7oJnWgjywQmUPt').update({
+//     color: {
+//         home: "Red",
+//         away: "Gold"
+//     }
+
+// })
+
+// updating jersey colors
+db.collection('teams').doc('Q8cHc7Doq7urgBySibL9').update({
+    'color.away': "Purple"
+
+
+})
+db.collection('teams').doc('QERZLj7oJnWgjywQmUPt').update({
+    'color.away': "Pink"
+
+})
 
 
 
